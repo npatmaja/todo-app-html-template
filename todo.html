@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/1e13cc8bf4.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+  <div class="container mx-auto">
+    <h1 class="text-center my-5 text-3xl">Todo App</h1>
+    <div class="w-full max-w-md mx-auto">
+      <form>
+        <input type="text" class="w-full bg-white border-2 border-grey-500 rounded-md py-2 px-2 mb-2" placeholder="Add a new todo">
+      </form>
+      <ul class="list-unstyled">
+        <li class="mb-2">
+          <div class="flex flex-row">
+            <input type="checkbox" class="mr-2 my-auto">
+            <div
+              x-data="{
+                isEditing: false,
+                focus: function() {
+                  const input = this.$refs.textInput;
+                  input.focus();
+                  input.select();
+                }
+              }"
+              x-cloak
+            >
+              <div
+                x-show=!isEditing
+              >
+                <span class="text-gray-600" @click="isEditing = true; $nextTick(() => focus())">
+                  Buy groceries
+                </span>
+              </div>
+              <div x-show=isEditing class="flex flex-col">
+                <form class="flex">
+                    <input
+                        type="text"
+                        class="px-2 border rounded border-gray-400 shadow-inner appearance-none"
+                        value="Buy groceries"
+                        x-ref="textInput"
+                        @click.away="isEditing = false"
+                        x-on:keydown.enter="isEditing = false"
+                        x-on:keydown.escape="isEditing = false"
+                        onInput="this.setAttribute('size', this.value.length||=1)"
+                    >
+                </form>
+              </div>
+            </div>
+            <button class="text-danger text-sm mx-1 text-slate-600">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </li>
+        <li class="mb-2">
+          <div class="flex flex-row">
+            <input type="checkbox" class="mr-2 my-auto">
+            <div
+              x-data="{
+                isEditing: false,
+                focus: function() {
+                  const input = this.$refs.textInput;
+                  input.focus();
+                  input.select();
+                }
+              }"
+              x-cloak
+            >
+              <div
+                x-show=!isEditing
+              >
+                <span class="text-gray-600" @click="isEditing = true; $nextTick(() => focus())">
+                  Clean the house
+                </span>
+              </div>
+              <div x-show=isEditing class="flex flex-col">
+                <form class="flex">
+                    <input
+                        type="text"
+                        class="px-2 border rounded border-gray-400 shadow-inner appearance-none"
+                        value="Clean the house"
+                        x-ref="textInput"
+                        @click.away="isEditing = false"
+                        x-on:keydown.enter="isEditing = false"
+                        x-on:keydown.escape="isEditing = false"
+                    >
+                </form>
+              </div>
+            </div>
+            <button class="text-danger text-sm mx-1 text-slate-600">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </li>
+        <li class="mb-2">
+          <div class="flex flex-row">
+            <input type="checkbox" class="mr-2 my-auto" checked>
+            <div
+              x-data="{
+                isEditing: false,
+                focus: function() {
+                  const input = this.$refs.textInput;
+                  input.focus();
+                  input.select();
+                }
+              }"
+              x-cloak
+            >
+              <div
+                x-show=!isEditing
+              >
+                <span class="text-gray-600" @click="isEditing = true; $nextTick(() => focus())">
+                  Wash the car
+                </span>
+              </div>
+              <div x-show=isEditing class="flex flex-col">
+                <form class="flex">
+                    <input
+                        type="text"
+                        class="px-2 border rounded border-gray-400 shadow-inner appearance-none"
+                        value="Wash the car"
+                        x-ref="textInput"
+                        @click.away="isEditing = false"
+                        x-on:keydown.enter="isEditing = false"
+                        x-on:keydown.escape="isEditing = false"
+                    >
+                </form>
+              </div>
+            </div>
+            <button class="text-danger text-sm mx-1 text-slate-600">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
+
